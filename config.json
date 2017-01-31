@@ -1,0 +1,14 @@
+{
+	"clientToken": "your token here",
+	"historyLength": 5,
+	"notificationTime": 4000,
+	"wordRegex": "^([A-z0-9'\"\\-_]+[.,!?;:]?|\\$?[0-9.]+[$%]?)$",
+	"game": "#one-word-story",
+	"channel": 0,
+	"checkEdits": true,
+	"checkMentions": true,
+	"lang": {
+		"doubleMessage": "You cannot send two messages in a row! Wait for someone else to respond.",
+		"invalidWord": "That is not a word!"
+	}
+}
