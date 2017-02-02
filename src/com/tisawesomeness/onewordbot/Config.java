@@ -2,7 +2,6 @@ package com.tisawesomeness.onewordbot;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
@@ -15,7 +14,7 @@ public class Config {
 	private int notificationTime;
 	private String wordRegex;
 	private String game;
-	private BigInteger channel;
+	private String channel;
 	private boolean checkEdits;
 	private boolean checkMentions;
 	
@@ -33,7 +32,7 @@ public class Config {
 			if (notificationTime < 1) {notificationTime = 1;}
 			wordRegex = config.optString("wordRegex");
 			game = config.optString("game");
-			channel = config.optBigInteger("channel", null);
+			channel = config.optString("channel", null);
 			checkEdits = config.optBoolean("checkEdits", false);
 			checkMentions = config.optBoolean("checkMentions", true);
 			
@@ -49,6 +48,9 @@ public class Config {
 	public String getClientToken() {
 		return clientToken;
 	}
+	public void setClientToken(String clientToken) {
+		this.clientToken = clientToken;
+	}
 	public int getHistoryLength() {
 		return historyLength;
 	}
@@ -61,8 +63,11 @@ public class Config {
 	public String getGame() {
 		return game;
 	}
-	public BigInteger getChannel() {
+	public String getChannel() {
 		return channel;
+	}
+	public void setChannel(String channel) {
+		this.channel = channel;
 	}
 	public boolean getCheckEdits() {
 		return checkEdits;

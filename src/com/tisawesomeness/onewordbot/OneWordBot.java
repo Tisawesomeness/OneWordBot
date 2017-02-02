@@ -20,6 +20,14 @@ public class OneWordBot {
 		//Initialize config
 		config = new Config(new File("./config.json"));
 		
+		//Override config values
+		if (args.length > 0) {
+			config.setClientToken(args[0]);
+			if (args.length > 1) {
+				config.setChannel(args[1]);
+			}
+		}
+		
 		//Initialize JDA
 		System.out.println("Booting...");
 		JDABuilder builder = new JDABuilder(AccountType.BOT)
