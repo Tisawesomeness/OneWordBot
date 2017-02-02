@@ -47,7 +47,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.tisawesomeness.onewordbot.OneWordBot</mainClass>
+              <mainClass>OneWordBot</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
