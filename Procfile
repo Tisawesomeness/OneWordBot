@@ -1,1 +1,1 @@
-web: java -jar target/onewordbot.jar
+worker: java -jar target/onewordbot.jar
