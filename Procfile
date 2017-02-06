@@ -1,1 +1,1 @@
-worker: java $JAVA_OPTS -cp target/classes:target/dependency/* -jar target/onewordbot.jar
+worker: java $JAVA_OPTS -cp target/dependency/* target/onewordbot.jar
