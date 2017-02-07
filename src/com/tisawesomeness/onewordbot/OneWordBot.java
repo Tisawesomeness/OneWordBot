@@ -38,7 +38,7 @@ public class OneWordBot {
 			.addListener(new Listener(config));
 		try {
 			jda = builder.buildBlocking();
-		} catch (LoginException | IllegalArgumentException | InterruptedException | RateLimitedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
