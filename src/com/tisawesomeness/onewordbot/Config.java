@@ -1,8 +1,10 @@
 package com.tisawesomeness.onewordbot;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Config {
@@ -38,8 +40,8 @@ public class Config {
 			doubleMessage = lang.optString("doubleMessage");
 			invalidWord = lang.optString("invalidWord");
 			
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (JSONException | IOException e) {
+			e.printStackTrace();
 		}
 	}
 

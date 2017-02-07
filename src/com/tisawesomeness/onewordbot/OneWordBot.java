@@ -2,10 +2,13 @@ package com.tisawesomeness.onewordbot;
 
 import java.io.File;
 
+import javax.security.auth.login.LoginException;
+
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.exceptions.RateLimitedException;
 
 public class OneWordBot {
 
@@ -35,8 +38,8 @@ public class OneWordBot {
 			.addListener(new Listener(config));
 		try {
 			jda = builder.buildBlocking();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (LoginException | IllegalArgumentException | InterruptedException | RateLimitedException e) {
+			e.printStackTrace();
 		}
 
 	}
