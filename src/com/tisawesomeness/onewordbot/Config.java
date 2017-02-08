@@ -25,14 +25,14 @@ public class Config {
 		try {
 			JSONObject config = new JSONObject(FileUtils.readFileToString(configFile, "UTF-8"));
 			
-			clientToken = config.optString("clientToken");
+			if (clientToken == null) {clientToken = config.optString("clientToken");}
 			historyLength = config.optInt("historyLength", 5);
 			if (historyLength < 1) {historyLength = 1;}
 			notificationTime = config.optInt("notificationTime", 4000);
 			if (notificationTime < 1) {notificationTime = 1;}
 			wordRegex = config.optString("wordRegex");
 			game = config.optString("game");
-			channel = config.optString("channel", null);
+			if (channel == null) {channel = config.optString("channel", null);}
 			checkEdits = config.optBoolean("checkEdits", false);
 			checkMentions = config.optBoolean("checkMentions", true);
 			
