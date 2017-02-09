@@ -10,7 +10,6 @@ import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.MessageUpdateEvent;
-import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class Listener extends ListenerAdapter {
@@ -41,12 +40,7 @@ public class Listener extends ListenerAdapter {
 				
 				//Get previous messages
 				MessageHistory mh = new MessageHistory(c);
-				try {
-					mh.retrievePast(this.config.getHistoryLength()).block();
-				} catch (RateLimitedException ex) {
-					ex.printStackTrace();
-					return;
-				}
+				mh.retrievePast(this.config.getHistoryLength()).complete();
 				
 				List<Message> past = mh.getCachedHistory();
 				Message prev = past.get(0);
@@ -113,22 +107,17 @@ public class Listener extends ListenerAdapter {
 	}
 
 	public void notify(String m, TextChannel c) {
-		try {
-			Message notification = c.sendMessage(m).block();
-			
-			new java.util.Timer().schedule( 
-				new java.util.TimerTask() {
-					@Override
-					public void run() {
-						notification.deleteMessage().queue();
-					}
-				}, 
-				config.getNotificationTime()
-			);
-			
-		} catch (RateLimitedException e) {
-			e.printStackTrace();
-		}
+		Message notification = c.sendMessage(m).complete();
+		
+		new java.util.Timer().schedule( 
+			new java.util.TimerTask() {
+				@Override
+				public void run() {
+					notification.deleteMessage().queue();
+				}
+			}, 
+			config.getNotificationTime()
+		);
 	}
 	
 }
