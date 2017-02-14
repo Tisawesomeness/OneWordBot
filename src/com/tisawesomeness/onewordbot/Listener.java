@@ -33,7 +33,7 @@ public class Listener extends ListenerAdapter {
 		User u = m.getAuthor();
 		
 		//If the message was sent in the right channel
-		if (c.getId().equals(config.getChannel().toString())) {
+		if (c.getId().equals(config.getChannel())) {
 			
 			//If sender is human
 			if (!m.getAuthor().isBot()) {
@@ -83,7 +83,7 @@ public class Listener extends ListenerAdapter {
 	
 	@Override
 	public void onMessageUpdate(MessageUpdateEvent e) {
-		if (config.getCheckEdits()) {
+		if (config.getCheckEdits() && e.getChannel().getId().equals(config.getChannel())) {
 			check(e.getMessage());
 		}
 	}
